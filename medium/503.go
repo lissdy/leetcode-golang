@@ -24,22 +24,19 @@ func nextGreaterElements(nums []int) []int {
 	ans := make([]int, n)
 	for i, v := range nums {
 		tmp[i] = v
+		ans[i] = -1
 	}
 	for i, v := range nums {
 		tmp[n+i] = v
 	}
-	for i, v := range nums {
-		flag := false
-		for j := i + 1; j < 2*n; j++ {
-			if tmp[j] > v {
-				flag = true
-				ans[i] = tmp[j]
-				break
-			}
+	stack := []int{}
+
+	for i, v := range tmp {
+		for len(stack) > 0 && v > nums[stack[len(stack)-1]] {
+			ans[stack[len(stack)-1]] = v
+			stack = stack[:len(stack)-1]
 		}
-		if !flag {
-			ans[i] = -1
-		}
+		stack = append(stack, i%n)
 	}
 	return ans
 }
