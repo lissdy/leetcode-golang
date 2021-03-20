@@ -1,7 +1,6 @@
 package main
 
 import (
-	"reflect"
 	"strconv"
 )
 
@@ -83,9 +82,10 @@ import (
 //leetcode submit region begin(Prohibit modification and deletion)
 func evalRPN(tokens []string) int {
 	stack := []string{}
-	opt := [4]string{"+", "-", "*", "/"}
 	for _, v := range tokens {
-		if itemExists(opt, v) { //遇到操作符，将最后两个数出栈，将计算结果入栈
+		_, error := strconv.Atoi(v)
+		if error != nil {
+			// 操作符
 			num2, _ := strconv.Atoi(stack[len(stack)-1])
 			num1, _ := strconv.Atoi(stack[len(stack)-2])
 			stack = stack[:len(stack)-2]
@@ -107,22 +107,6 @@ func evalRPN(tokens []string) int {
 	}
 	res, _ := strconv.Atoi(stack[0])
 	return res
-}
-
-func itemExists(arrayType interface{}, item interface{}) bool {
-	arr := reflect.ValueOf(arrayType)
-
-	if arr.Kind() != reflect.Array {
-		panic("Invalid data-type")
-	}
-
-	for i := 0; i < arr.Len(); i++ {
-		if arr.Index(i).Interface() == item {
-			return true
-		}
-	}
-
-	return false
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
