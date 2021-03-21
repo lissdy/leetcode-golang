@@ -18,19 +18,19 @@ package main
 // Related Topics 数组
 // 👍 574 👎 0
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 func findDisappearedNumbers(nums []int) []int {
 	dir := map[int]int{}
-	for _, v := range nums{
+	for _, v := range nums {
 		dir[v]++
 	}
 	ans := []int{}
-	for i:=1;i<=len(nums);i++{
-		if dir[i]==0{
-			ans=append(ans,i)
+	for i := 1; i <= len(nums); i++ {
+		if dir[i] == 0 {
+			ans = append(ans, i)
 		}
 	}
 	return ans
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

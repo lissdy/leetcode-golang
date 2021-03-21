@@ -5,12 +5,12 @@ import (
 	"time"
 )
 
-func main(){
-	c := make(chan int,2)
+func main() {
+	c := make(chan int, 2)
 	go func() {
-		for{
-			n,ok:= <- c
-			if !ok{
+		for {
+			n, ok := <-c
+			if !ok {
 				break
 			}
 			fmt.Print(n)

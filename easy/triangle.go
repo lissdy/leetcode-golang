@@ -1,8 +1,8 @@
 package main
 
 func maxProduct(nums []int) int {
-	imax := make([]int,len(nums))
-	imin := make([]int,len(nums))
+	imax := make([]int, len(nums))
+	imin := make([]int, len(nums))
 	imax[0] = nums[0]
 	imin[0] = nums[0]
 	ans := nums[0]

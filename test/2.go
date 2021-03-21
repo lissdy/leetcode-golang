@@ -92,7 +92,7 @@ func (this *Trie) Insert(word string) {
 func (this *Trie) Search(word string) bool {
 	for _, v := range word {
 		index := v - 'a'
-		if index<0{ // '.'
+		if index < 0 { // '.'
 			return false
 		}
 		if this.children[index] == nil {
@@ -114,7 +114,7 @@ func (this *Trie) Search(word string) bool {
 func (this *Trie) StartsWith(prefix string) bool {
 	for _, v := range prefix {
 		index := v - 'a'
-		if index<0{ // '.'
+		if index < 0 { // '.'
 			return false
 		}
 		if this.children[index] == nil {

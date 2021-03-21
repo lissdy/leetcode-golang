@@ -1,21 +1,21 @@
 package main
 
 import (
-	"time"
-	"log"
 	"leetcode-golang/runner"
+	"log"
 	"os"
+	"time"
 )
 
-const timeout  = 3 * time.Second
+const timeout = 3 * time.Second
 
-func main(){
+func main() {
 	log.Println("starting work")
 
 	r := runner.New(timeout)
 	r.Add(createTask(), createTask(), createTask())
 
-	if err:=r.Start();err!=nil{
+	if err := r.Start(); err != nil {
 		switch err {
 		case runner.ErrTimeout:
 			log.Println("terminating due to timeout")
@@ -28,9 +28,9 @@ func main(){
 	log.Println("process ended")
 }
 
-func createTask() func(int){
-	return func(id int){
+func createTask() func(int) {
+	return func(id int) {
 		log.Printf("processor - task #%d", id)
-		time.Sleep(time.Duration(id)*time.Second)
+		time.Sleep(time.Duration(id) * time.Second)
 	}
 }

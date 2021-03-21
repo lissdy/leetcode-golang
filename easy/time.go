@@ -1,14 +1,14 @@
 package main
 
 import (
-	"sync"
 	"fmt"
+	"sync"
 	"time"
 )
 
 var wg sync.WaitGroup
 
-func main()  {
+func main() {
 	baton := make(chan int)
 	wg.Add(1)
 	go Runner(baton)
@@ -16,9 +16,9 @@ func main()  {
 	wg.Wait()
 }
 
-func Runner(baton chan int){
+func Runner(baton chan int) {
 	var newRunner int
-	runner := <- baton
+	runner := <-baton
 	fmt.Printf("Runner %d Running With Baton \n", runner)
 
 	if runner != 4 {
@@ -29,7 +29,7 @@ func Runner(baton chan int){
 
 	time.Sleep(100 * time.Millisecond)
 
-	if runner == 4{
+	if runner == 4 {
 		fmt.Printf("Runner %d Finished, Race Over \n", runner)
 		wg.Done()
 		return
@@ -38,4 +38,3 @@ func Runner(baton chan int){
 	fmt.Printf("Runner %d Exchange With Runner %d \n", runner, newRunner)
 	baton <- newRunner
 }
-

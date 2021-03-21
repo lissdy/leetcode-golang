@@ -52,10 +52,16 @@ type hp struct {
 	sort.IntSlice
 	size int
 }
+
 func (h *hp) Push(v interface{}) { h.IntSlice = append(h.IntSlice, v.(int)) }
-func (h *hp) Pop() interface{}   { a := h.IntSlice; v := a[len(a)-1]; h.IntSlice = a[:len(a)-1]; return v }
-func (h *hp) push(v int)         { h.size++; heap.Push(h, v) }
-func (h *hp) pop() int           { h.size--; return heap.Pop(h).(int) }
+func (h *hp) Pop() interface{} {
+	a := h.IntSlice
+	v := a[len(a)-1]
+	h.IntSlice = a[:len(a)-1]
+	return v
+}
+func (h *hp) push(v int) { h.size++; heap.Push(h, v) }
+func (h *hp) pop() int   { h.size--; return heap.Pop(h).(int) }
 func (h *hp) prune() {
 	for h.Len() > 0 {
 		num := h.IntSlice[0]

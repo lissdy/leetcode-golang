@@ -18,18 +18,17 @@ package main
 // Related Topics 数组
 // 👍 251 👎 0
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 func getRow(rowIndex int) []int {
 	var pre, cur []int
-	for i:=0;i<rowIndex;i++{
-		cur[0],cur[i]=1,1
-		for j:=1;j<i;j++{
-			cur[j]=pre[j-1]+pre[j]
+	for i := 0; i < rowIndex; i++ {
+		cur[0], cur[i] = 1, 1
+		for j := 1; j < i; j++ {
+			cur[j] = pre[j-1] + pre[j]
 		}
-		pre=cur
+		pre = cur
 	}
 	return cur
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

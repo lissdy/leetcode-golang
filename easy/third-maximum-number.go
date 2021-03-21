@@ -3,8 +3,8 @@ package main
 
 import "fmt"
 
-func main()  {
-	var array =[]int{1,2,2,5,3,5}
+func main() {
+	var array = []int{1, 2, 2, 5, 3, 5}
 	fmt.Println(thirdMax(array))
 }
 
@@ -12,18 +12,18 @@ func thirdMax(nums []int) int {
 	return nMax(nums, 3)
 }
 
-func nMax(s []int, n int) int{
+func nMax(s []int, n int) int {
 	s = removeDul(s)
-	if len(s)==1{
+	if len(s) == 1 {
 		return s[0]
 	}
 	mark := s[len(s)-1]
 	var lowPart []int
 	var midPart int
 	var hihPart []int
-	for _, x :=range s{
-		switch  {
-		case  x < mark:
+	for _, x := range s {
+		switch {
+		case x < mark:
 			lowPart = append(lowPart, x)
 		case x == mark:
 			midPart = x
@@ -36,22 +36,22 @@ func nMax(s []int, n int) int{
 		return midPart
 	}
 
-	if len(hihPart) > n-1{
-		nMax(append(hihPart),n)
-	}else{
+	if len(hihPart) > n-1 {
+		nMax(append(hihPart), n)
+	} else {
 		fmt.Println(lowPart)
-		fmt.Println(n-len(hihPart)-1)
-		nMax(append(lowPart),n-len(hihPart)-1)
+		fmt.Println(n - len(hihPart) - 1)
+		nMax(append(lowPart), n-len(hihPart)-1)
 	}
 
 	return s[0]
 }
 
-func removeDul(nums []int) []int{
+func removeDul(nums []int) []int {
 	dic := map[int]int{}
 	var res []int
-	for _,x := range nums{
-		if dic[x] == 1{
+	for _, x := range nums {
+		if dic[x] == 1 {
 			continue
 		}
 		dic[x] = 1
@@ -59,4 +59,3 @@ func removeDul(nums []int) []int{
 	}
 	return res
 }
-
