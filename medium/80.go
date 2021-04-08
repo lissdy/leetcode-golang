@@ -62,13 +62,12 @@ func removeDuplicates(nums []int) int {
 	if n <= 2 {
 		return n
 	}
-	slow, fast := 2, 2
-	for fast < n {
-		if nums[slow-2] != nums[fast] {
+	slow := 0
+	for fast := 2; fast < n; fast++ {
+		if nums[slow] != nums[fast] {
 			nums[slow] = nums[fast]
 			slow++
 		}
-		fast++
 	}
 	return slow
 }
